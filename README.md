@@ -15,22 +15,20 @@
         .gif-img { width: 100%; max-width: 200px; border-radius: 15px; margin: 10px 0; }
         .btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; margin-top: 15px; width: 85%; font-weight: 600; }
         
-        /* Maze Game */
         #maze { width: 250px; height: 200px; background: #fffdf5; margin: 10px auto; position: relative; border: 2px solid var(--primary); border-radius: 10px; }
         #player { position: absolute; top: 5px; left: 5px; font-size: 22px; transition: 0.1s; z-index: 10; }
         #goal { position: absolute; bottom: 5px; right: 5px; font-size: 22px; }
 
-        /* Reasons Scrolling */
-        #reasons-box { height: 300px; overflow-y: scroll; border: 1px solid #ffccd5; padding: 15px; background: #fffdf5; border-radius: 15px; text-align: left; }
+        #reasons-box { height: 250px; overflow-y: scroll; border: 1px solid #ffccd5; padding: 15px; background: #fffdf5; border-radius: 15px; text-align: left; }
         .reason-item { padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; color: #444; line-height: 1.4; }
 
-        video { width: 100%; border-radius: 15px; margin-top: 10px; border: 2px solid var(--primary); }
+        video { width: 100%; border-radius: 15px; margin-top: 10px; border: 2px solid var(--primary); background: #000; }
         .letter-text { text-align: left; font-family: 'Great Vibes', cursive; font-size: 1.5rem; line-height: 1.6; color: #333; white-space: pre-wrap; background: #fffdf5; padding: 15px; border-radius: 15px; }
     </style>
 </head>
 <body>
 
-    <div style="position: absolute; left: -9999px;">
+    <div id="yt-audio-container" style="position: absolute; top: -9999px; left: -9999px;">
         <div id="yt-audio"></div>
     </div>
 
@@ -44,7 +42,7 @@
     <div id="page2" class="container">
         <h1>Pehli Yaad 📞</h1>
         <img src="https://media.tenor.com/X9S79Uu3v7MAAAAi/mochi-mochi-peach-cat-cat.gif" class="gif-img">
-        <p>Hamari sabse pehli call kitni der chali thi? Sach batana!</p>
+        <p>Hamari sabse pehli call kitni der chali thi?</p>
         <button class="btn" style="background:white; color:#333; border:1px solid #ddd" onclick="alert('Nahi, itni kam nahi thi!')">08:45</button>
         <button class="btn" style="background:white; color:#333; border:1px solid #ddd" onclick="showNext(3)">10:53</button>
         <button class="btn" style="background:white; color:#333; border:1px solid #ddd" onclick="alert('Itni lambi bhi nahi thi!')">12:10</button>
@@ -52,7 +50,7 @@
 
     <div id="page3" class="container">
         <h1>Love Maze 🧭</h1>
-        <p>Is Dil ❤️ ko control karke mere ghar 🏠 tak pahunchaiye!</p>
+        <p>Dil ❤️ ko mere ghar 🏠 tak pahunchaiye!</p>
         <div id="maze"><div id="player">❤️</div><div id="goal">🏠</div></div>
         <div style="margin-top:10px;">
             <button class="btn" style="width:50px; padding:10px;" onclick="move('U')">⬆️</button><br>
@@ -65,7 +63,7 @@
 
     <div id="page4" class="container">
         <h1>Kyun Itna Pyar Hai? ❤️</h1>
-        <p>Ise poora niche tak padhiye, har ek baat sach hai...</p>
+        <p>Ise poora niche tak scroll karke padhiye...</p>
         <div id="reasons-box">
             <div class="reason-item">1. Aapki wo masoom si smile jo mera din bana deti hai.</div>
             <div class="reason-item">2. Jis tarah aap meri fikar karte ho, koi nahi kar sakta.</div>
@@ -73,15 +71,10 @@
             <div class="reason-item">4. Humari wo pehli call jo hamesha yaad rahegi.</div>
             <div class="reason-item">5. Aapka mere bure jokes par bhi dil se hasna.</div>
             <div class="reason-item">6. Aapki aankhein jo bina bole sab keh deti hain.</div>
-            <div class="reason-item">7. Aapka mujhe har baar maaf kar dena.</div>
-            <div class="reason-item">8. Aapka mere sath budha hone ka sapna dekhna.</div>
-            <div class="reason-item">9. Aapka har promise nibhana.</div>
-            <div class="reason-item">10. Aapka meri har choti pasand ka dhyan rakhna.</div>
-            <div class="reason-item">11. Aapki awaaz jo mere liye sukoon hai.</div>
-            <div class="reason-item">12. Aapka mujhe duniya se bachana.</div>
-            <div class="reason-item">13. Aapki zidd jo sirf mujhse hoti hai.</div>
-            <div class="reason-item">14. Aapka mujhe behtar insaan banana.</div>
-            <div class="reason-item">15. Bas aap, kyunki aap jaisa koi aur nahi hai.</div>
+            <div class="reason-item">7. Aapka mere liye itna waqt nikalna.</div>
+            <div class="reason-item">8. Aapka mujhe har baar maaf kar dena.</div>
+            <div class="reason-item">9. Aapka mere sath budha hone ka sapna dekhna.</div>
+            <div class="reason-item">10. Bas aap, kyunki aap jaisa koi aur nahi hai. ❤️</div>
         </div>
         <button id="reason-btn" class="btn" style="display:none" onclick="showNext(5)">Video Time 🎬</button>
     </div>
@@ -99,14 +92,9 @@
         <div class="letter-text">
 Meri Sabse Pyaari Jaan,
 
-Aapne is safar mein jo waqt bitaya, wo dikhata hai ki aap mujhse kitna pyar karti hain. Har ek yaad, har ek call hamare rishte ki buniyaad hai. 
+Aapne is safar mein jo waqt bitaya, wo dikhata hai ki aap mujhse kitna pyar karti hain. Main waada karta hoon ki main hamesha aapka sath nibhaunga. 
 
-Main waada karta hoon ki main hamesha aapka sath nibhaunga, chahe rasta kaisa bhi ho. Aap meri zindagi ka wo sukoon ho jo mujhe kahin aur nahi milta. Hum milkar apne har sapne ko pura karenge—wo shopping trips, wo lambi raatein aur hamara apna pyara sa ghar.
-
-Aap sirf meri girlfriend nahi ho, aap meri poori duniya ho. I love you more than words can say. Hamesha aise hi rehna.
-
-Aapka Hamesha,
-Tera Hero ❤️
+Aap meri zindagi ka wo sukoon ho jo mujhe kahin aur nahi milta. Hum milkar apne har sapne ko pura karenge. I love you more than words can say. ❤️
         </div>
         <button class="btn" onclick="location.reload()">Replay ❤️</button>
     </div>
@@ -114,21 +102,39 @@ Tera Hero ❤️
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let ytPlayer;
+        let isPlayerReady = false;
+
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('yt-audio', {
                 height: '0', width: '0', videoId: 'l6E16JAk_Fs',
-                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'l6E16JAk_Fs' }
+                playerVars: { 
+                    'autoplay': 1, 
+                    'loop': 1, 
+                    'playlist': 'l6E16JAk_Fs',
+                    'playsinline': 1 
+                },
+                events: {
+                    'onReady': function(event) {
+                        isPlayerReady = true;
+                        event.target.mute(); // Pehle mute karna padta hai autoplay ke liye
+                        event.target.playVideo();
+                    }
+                }
             });
         }
 
         function startJourney() {
-            if(ytPlayer) { ytPlayer.playVideo(); ytPlayer.unMute(); }
+            if(isPlayerReady) {
+                ytPlayer.unMute(); // User click par unmute
+                ytPlayer.setVolume(100);
+                ytPlayer.playVideo();
+            }
             showNext(2);
         }
 
-        function pauseMusic() { if(ytPlayer) ytPlayer.pauseVideo(); }
+        function pauseMusic() { if(isPlayerReady) ytPlayer.pauseVideo(); }
         function resumeMusicAndShowBtn() { 
-            if(ytPlayer) ytPlayer.playVideo(); 
+            if(isPlayerReady) ytPlayer.playVideo(); 
             document.getElementById('v-btn').style.display = 'block';
         }
 
@@ -137,7 +143,6 @@ Tera Hero ❤️
             document.getElementById('page'+n).classList.add('active');
         }
 
-        // Maze Logic
         let pos = { x: 5, y: 5 };
         function move(dir) {
             if(dir=='U' && pos.y > 5) pos.y -= 25;
@@ -149,10 +154,9 @@ Tera Hero ❤️
             if(pos.x >= 210 && pos.y >= 150) document.getElementById('maze-btn').style.display='block';
         }
 
-        // Reason Scroll Logic
         document.getElementById('reasons-box').onscroll = function() {
             let b = document.getElementById('reasons-box');
-            if(b.scrollHeight - b.scrollTop <= b.clientHeight + 5) {
+            if(b.scrollHeight - b.scrollTop <= b.clientHeight + 10) {
                 document.getElementById('reason-btn').style.display = 'block';
             }
         };
