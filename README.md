@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Only For You ❤️</title>
+    <title>Mere Dil Ki Dhadkan ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap');
 
@@ -15,23 +15,24 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         h1 { font-family: 'Dancing Script', cursive; color: var(--primary); font-size: 1.8rem; margin: 10px 0; }
-        .game-img { width: 160px; height: 160px; object-fit: cover; margin: 10px auto; display: block; border-radius: 20px; border: 3px solid var(--bg); }
-        .btn { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 15px; width: 85%; font-weight: 600; }
+        .game-img { width: 180px; height: auto; margin: 10px auto; display: block; border-radius: 15px; }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 15px; width: 85%; font-weight: 600; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
 
         /* Hidden Message Hunt */
-        .hunt-area { position: relative; width: 280px; height: 280px; margin: 0 auto; background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4Z3R3eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif') center/cover; border-radius: 15px; border: 3px solid var(--primary); cursor: crosshair; }
-        .hotspot { position: absolute; width: 50px; height: 50px; background: rgba(255, 77, 109, 0.1); border-radius: 50%; }
+        .hunt-area { position: relative; width: 280px; height: 280px; margin: 0 auto; background: url('https://media.tenor.com/On7tBy_9mS0AAAAi/peach-goma-love.gif') center/cover; border-radius: 15px; border: 3px solid var(--primary); }
+        .hotspot { position: absolute; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.01); border-radius: 50%; cursor: pointer; }
 
         /* Manual Scrolling Reasons */
-        #reasons-box { height: 350px; overflow-y: scroll; border: 2px solid #ffccd5; padding: 15px; background: #fffdf5; border-radius: 15px; margin: 15px 0; scroll-behavior: smooth; }
+        #reasons-box { height: 350px; overflow-y: scroll; border: 2px solid #ffccd5; padding: 15px; background: #fffdf5; border-radius: 15px; margin: 15px 0; }
         .reason-item { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; text-align: left; color: #444; line-height: 1.4; }
 
         .timeline { text-align: left; padding: 15px; border-left: 2px solid var(--primary); margin-left: 20px; }
-        .time-item { margin-bottom: 25px; position: relative; padding-left: 20px; }
+        .time-item { margin-bottom: 25px; position: relative; padding-left: 20px; font-size: 0.9rem; }
         .time-item::before { content: '🌸'; position: absolute; left: -32px; background: white; }
 
         video { width: 100%; border-radius: 20px; border: 3px solid var(--primary); }
-        .letter-content { text-align: left; font-family: 'Great Vibes', cursive; font-size: 1.6rem; line-height: 1.8; background: #fffdf5; padding: 25px; border-radius: 15px; white-space: pre-wrap; }
+        .letter-content { text-align: left; font-family: 'Great Vibes', cursive; font-size: 1.6rem; line-height: 1.8; background: #fffdf5; padding: 25px; border-radius: 15px; white-space: pre-wrap; color: #333; }
     </style>
 </head>
 <body>
@@ -39,67 +40,80 @@
     <div style="display:none"><div id="player"></div></div>
 
     <div id="page1" class="container active">
-        <h1>Welcome, Aapka Swagat Hai ❤️</h1>
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZhcHhqOHR5amx4eXh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/c76IJLufpN76PnZOjH/giphy.gif" class="game-img">
-        <p>Aaj aapko mere dil ke har us raaste se guzarna hoga jo sirf aap tak jata hai. Kya aap taiyar hain is safar ke liye?</p>
-        <button class="btn" onclick="startExperience()">Ji, Shuru Karein ✨</button>
+        <h1>Suno, Meri Jaan... ❤️</h1>
+        <img src="https://media.tenor.com/it76yY9_97wAAAAi/peach-and-goma-peach-goma.gif" class="game-img">
+        <p>Aapke liye maine kuch bahut gehra aur pyaara banaya hai. Ise araam se har ek step par mehsoos kijiye...</p>
+        <button class="btn" onclick="startExperience()">Ji, Bilkul ✨</button>
     </div>
 
     <div id="page2" class="container">
-        <h1>Level 1: Memory Test 🧩</h1>
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNxeXh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/Y4vS6mR95l16Q/giphy.gif" class="game-img">
-        <p>Hamari pehli call kitni der chali thi? Yaad kijiye...</p>
-        <button class="btn" style="background:white; color:#444; border:1px solid #ddd; margin:5px 0;" onclick="alert('Nahi ji, ye galat hai!')">08:45</button>
+        <h1>Level 1: Hamari Yaadein 🧩</h1>
+        <img src="https://media.tenor.com/X9S79Uu3v7MAAAAi/mochi-mochi-peach-cat-cat.gif" class="game-img">
+        <p>Aapko yaad hai hamari pehli call kitni der chali thi?</p>
+        <button class="btn" style="background:white; color:#444; border:1px solid #ddd; margin:5px 0;" onclick="alert('Nahi ji, thoda aur yaad kijiye!')">08:45</button>
         <button class="btn" style="background:white; color:#444; border:1px solid #ddd; margin:5px 0;" onclick="nextPage(3)">10:53</button>
         <button class="btn" style="background:white; color:#444; border:1px solid #ddd; margin:5px 0;" onclick="alert('Itni lambi bhi nahi thi!')">12:10</button>
     </div>
 
     <div id="page3" class="container">
-        <h1>Level 2: Hidden Secrets 🔍</h1>
-        <p>Is photo mein 4 jagah chhupi hui khushiyan hain. Inhe tap karke dhoondhiye!</p>
+        <h1>Level 2: Chhupi Hui Khushiyan 🔍</h1>
+        <p>Is photo mein 4 jagah "Secret Words" hain. Unhe dhoondh kar tap kijiye!</p>
         <div class="hunt-area">
-            <div class="hotspot" style="top: 5%; left: 5%;" onclick="found(1, 'Hamesha')"></div>
-            <div class="hotspot" style="top: 75%; left: 75%;" onclick="found(2, 'Saath')"></div>
-            <div class="hotspot" style="top: 10%; left: 70%;" onclick="found(3, 'Rehna')"></div>
-            <div class="hotspot" style="top: 80%; left: 10%;" onclick="found(4, 'Mere')"></div>
+            <div class="hotspot" style="top: 10%; left: 10%;" onclick="found(1, 'Hamesha')"></div>
+            <div class="hotspot" style="top: 75%; left: 70%;" onclick="found(2, 'Sath')"></div>
+            <div class="hotspot" style="top: 15%; left: 65%;" onclick="found(3, 'Rehna')"></div>
+            <div class="hotspot" style="top: 70%; left: 15%;" onclick="found(4, 'Mere')"></div>
         </div>
-        <p id="found-msg" style="color:var(--secondary); font-weight:bold; margin-top:10px;"></p>
-        <button id="hunt-nxt" class="btn" style="display:none" onclick="nextPage(4)">Level 3: Reasons ❤️</button>
+        <p id="found-msg" style="color:var(--secondary); font-weight:bold; height:20px;"></p>
+        <button id="hunt-nxt" class="btn" style="display:none" onclick="nextPage(4)">Agla Level ➡️</button>
     </div>
 
     <div id="page4" class="container">
-        <h1>Level 3: 100 Reasons Why... ❤️</h1>
-        <p>Aapko kyun chuna? Ye rahe wo 100 kaaran. Ise poora scroll karke padhiye...</p>
+        <h1>Level 3: Kyun Itna Pyar Hai? ❤️</h1>
+        <p>Aapko chune ke 100 kaaran. Ise araam se scroll karke padhiye...</p>
         <div id="reasons-box">
             <div id="reasons-list"></div>
         </div>
-        <button id="reasons-nxt" class="btn" style="display:none" onclick="nextPage(5)">Future Timeline 🏠</button>
+        <button id="reasons-nxt" class="btn" style="display:none" onclick="nextPage(5)">Hamara Future 🏠</button>
     </div>
 
     <div id="page5" class="container">
-        <h1>Level 4: Hamara Aane Wala Kal 🏠</h1>
+        <h1>Level 4: Hamara Safar 🏠</h1>
         <div class="timeline">
-            <div class="time-item"><b>Abhi:</b> Aap ye website padh rahi hain aur smile kar rahi hain.</div>
-            <div class="time-item"><b>Agla Saal:</b> Humari pehli official lambi trip aur dher saari shopping.</div>
-            <div class="time-item"><b>2027:</b> Hum dono ek hi chat ke niche honge, hamesha ke liye.</div>
-            <div class="time-item"><b>Future:</b> Humare sapno ka ghar jahan sirf pyar aur sukoon hoga.</div>
-            <div class="time-item"><b>Hamesha:</b> Mera har ek saans sirf aapke naam hoga.</div>
+            <div class="time-item"><b>Abhi:</b> Aapki ye pyari si muskurahat jo mere liye sabkuch hai.</div>
+            <div class="time-item"><b>Agla Saal:</b> Humari wo pehli trip jiska humein besabri se intezar hai.</div>
+            <div class="time-item"><b>2027:</b> Humara apna chota sa aashiyana jahan sirf sukoon hoga.</div>
+            <div class="time-item"><b>Hamesha:</b> Aapka haath mere haath mein, har mushkil ke waqt.</div>
         </div>
         <button class="btn" onclick="nextPage(6)">Special Video Dekhiye 🎬</button>
     </div>
 
     <div id="page6" class="container">
         <h1>Level 5: For you 🫶🏻🎀</h1>
-        <video id="mainVideo" onended="document.getElementById('finalNxt').style.display='block';">
-            <source src="https://cdn.discordapp.com/attachments/1421877888877203559/1466336739311489057/lv_7555554315964878141_20260117212840.mp4?ex=697c6001&is=697b0e81&hm=ce5b8a803dcfde1f356dd870d25e6f42b03c64a79f69e3b99b21fe03c5d93424&" type="video/mp4">
-        </video>
-        <button class="btn" id="finalNxt" style="display:none" onclick="nextPage(7)">Mera Akhri Khat 💌</button>
+        <video id="mainVideo" controls onended="document.getElementById('finalNxt').style.display='block';">
+            <source src="https://raw.githubusercontent.com/Anshul-code-hub/cdn/main/your_video.mp4" type="video/mp4">
+            </video>
+        <button class="btn" id="finalNxt" style="display:none" onclick="nextPage(7)">Mera Khat Padhiye 💌</button>
     </div>
 
     <div id="page7" class="container">
-        <h1>Khat Sirf Aapke Liye ❤️</h1>
-        <div class="letter-content" id="longLetter"></div>
-        <button class="btn" onclick="location.reload()">Replay the Magic ❤️</button>
+        <h1>Mera Akhri Khat ❤️</h1>
+        <div class="letter-content">
+Meri Pyaari Jaan,
+
+Main aaj jo bhi likh raha hoon, wo mere dil ki gehraiyon se nikal raha hai. Aapne aaj is safar mein jo waqt bitaya, wo sirf ek website nahi thi, wo meri koshish thi aapko ye batane ki ki aap mere liye kitni khaas hain. 
+
+Aapki wo pehli call se lekar aaj tak, har ek lamha mere liye kisi sapne se kam nahi hai. Main aksar baithkar sochta hoon ki aapne mujh mein aisa kya dekha jo itna pyar kiya, par sach toh ye hai ki aapne mujhe mujhse behtar banaya hai. Jab aap smile karti hain, toh lagta hai jaise duniya ki saari pareshaaniyan khatam ho gayi hon. 
+
+Main jaanta hoon main kabhi kabhi bahut ziddi ho jata hoon, ya aapko pareshan kar deta hoon, par yakeen maniye, mera har ek ehsaas sirf aapke liye hai. Main chahta hoon ki humara sath hamesha aise hi bana rahe. Hum milkar wo har sapna pura karein jo humne dekha hai—wo lambi trips, wo dher saari shopping, aur wo shaamein jahan sirf hum dono hon.
+
+Aap meri soulmate hain, meri sabse acchi dost hain aur meri poori duniya hain. Aapke bina meri zindagi ek khali kitab ki tarah hai. Main waada karta hoon ki main hamesha aapka sath dunga, chahe halaat kaise bhi hon. Main hamesha aapko wo respect aur wo pyar dunga jiske aap haqdaar hain. 
+
+Aapne mujhe sikhaya ki mohabbat sirf kehne ki cheez nahi, nibhane ki cheez hai. Main hamesha aapka hi rahunga. Thank you meri zindagi mein aane ke liye aur use itna haseen banane ke liye. Aapki masoomiyat aur aapka ye bholapan hamesha aise hi rakhna. 
+
+I love you more than words can ever describe. Forever and always! ❤️
+        </div>
+        <button class="btn" onclick="location.reload()">Dobara Dekhiye ❤️</button>
     </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -121,7 +135,6 @@
             if(n === 6) { if(player) player.pauseVideo(); v.play(); } 
             else { v.pause(); if(player) player.playVideo(); }
             if(n === 4) loadReasons();
-            if(n === 7) injectLetter();
         }
 
         let foundCount = 0;
@@ -133,30 +146,21 @@
 
         function loadReasons() {
             const list = document.getElementById('reasons-list');
-            const reasons = [
-                "Aapki smile jo mera din bana deti hai.", "Aapki aankhein jo sab kuch bol deti hain.", "Aapka mujh par wo pagalpan wala gussa.", "Aapka mujhe choti choti baaton par manana.", "Aapka meri fikr karna jaise koi aur nahi karta.", "Aapka mere bure jokes par bhi hasna.", "Aapka sath dena jab koi sath nahi tha.", "Aapki masoomiyat jo aaj bhi bachi hai.", "Aapka mujhe hamesha 'Aap' kehkar respect dena.", "Aapka mere nakhre uthana.",
-                "Aapki awaaz jo mere liye sukoon hai.", "Aapka mujhe pareshan karne ka tarika.", "Aapka mere liye itna waqt nikalna.", "Aapka har promise poora karna.", "Aapka mera haath pakadne ka tarika.", "Aapki wo pyaari si baatein jo khatam nahi hoti.", "Aapka mujh par itna bharosa karna.", "Aapka meri har pasand ka dhyan rakhna.", "Aapka mere liye special feel karwana.", "Aapka mere sath budha hone ka sapna dekhna.",
-                "Aapki zidd jo sirf mujhse hoti hai.", "Aapka mujhe duniya se bachana.", "Aapka mujhe har baar maaf kar dena.", "Aapki sadgi jo sabse alag hai.", "Aapka mera hero hona.", "Aapka meri family ki respect karna.", "Aapka mujhe har din naya feel karwana.", "Aapka mere liye rona aur hasna.", "Aapka mera poora jahan hona.", "Aapki har ek adaa jo mujhe pagal karti hai."
+            const data = [
+                "Aapki smile jo sab kuch bhula deti hai.", "Aapki masoomiyat.", "Aapka mera itna khayal rakhna.", "Aapka mujhse ladna aur fir manana.", "Humari lambi baatein.", "Aapka mujh par bharosa karna.", "Aapka mere bure jokes par hasna.", "Aapka mujhe samjhana.", "Aapka mere nakhre uthana.", "Aapka meri har baat sunna.", "Aapka mera support banna.", "Aapki aankhein.", "Aapka mere liye special feel karwana.", "Aapka mere sath budha hone ka sapna.", "Aapki sadgi.", "Aapka mujhe hamesha 'Aap' kehna.", "Aapka mere liye rona.", "Aapka mere liye itna wait karna.", "Aapki awaaz.", "Aapka meri fikr karna."
             ];
-            // Adding more to make it 100 unique
-            for(let i=0; i<100; i++){
+            for(let i=0; i<100; i++) {
                 const div = document.createElement('div');
                 div.className = 'reason-item';
-                div.innerText = (i+1) + ". " + (reasons[i % reasons.length] + " (Reason #" + (i+1) + ")");
+                div.innerText = (i+1) + ". " + (data[i % data.length] || "Aapka mere sath hamesha rehna.");
                 list.appendChild(div);
             }
             const box = document.getElementById('reasons-box');
             box.onscroll = function() {
-                if (box.scrollHeight - box.scrollTop <= box.clientHeight + 1) {
+                if (box.scrollHeight - box.scrollTop <= box.clientHeight + 2) {
                     document.getElementById('reasons-nxt').style.display = 'block';
                 }
             };
-        }
-
-        function injectLetter() {
-            const letter = document.getElementById('longLetter');
-            let content = "Meri Pyaari Jaan,\n\nMain jaanta hoon ki aaj aapne is website par 30 minute bitaye, par main aapke sath 30 saal aur usse bhi zyada bitana chahta hoon. Aap sirf meri girlfriend nahi ho, aap mera wo sukoon ho jo main hamesha se dhundh raha tha...\n\n(Aapka real long message yahan continue hoga...)\n\nMain waada karta hoon ki main hamesha aapka sath dunga. Hum milkar apni duniya sajayenge. I Love You So Much! ❤️";
-            letter.innerText = content.repeat(10);
         }
     </script>
 </body>
