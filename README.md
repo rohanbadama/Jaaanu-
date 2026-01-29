@@ -11,7 +11,7 @@
             --pink-bg: #fff0f3;
             --dark-pink: #ff4d6d;
             --rose-red: #c9184a;
-            --gold: #d4af37;
+            --soft-white: rgba(255, 255, 255, 0.94);
         }
 
         body {
@@ -22,233 +22,207 @@
             height: 100vh; overflow: hidden;
         }
 
-        /* Decoration: Floating Rose Petals */
-        .petal {
-            position: absolute; background: #ff4d6d;
-            border-radius: 150% 0 150% 0;
-            animation: animate 10s linear infinite;
-            z-index: 1; opacity: 0.7;
+        /* Floating Rose Petals & Hearts */
+        .decoration {
+            position: absolute; pointer-events: none;
+            animation: fall linear infinite; z-index: 1;
         }
-        @keyframes animate {
-            0% { transform: translateY(-10%) rotate(0deg); left: 0; }
-            100% { transform: translateY(110vh) rotate(360deg); left: 100%; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
-
-        /* Decoration: Sparkling Stars */
-        .star {
-            position: absolute; background: white; border-radius: 50%;
-            animation: twinkle 2s infinite; z-index: 1;
-        }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 30px; border-radius: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 60px rgba(255, 77, 109, 0.4);
+            background: var(--soft-white);
+            backdrop-filter: blur(12px);
+            padding: 25px; border-radius: 40px;
+            box-shadow: 0 25px 70px rgba(255, 77, 109, 0.35);
             width: 85%; max-width: 450px;
             display: none; text-align: center;
             position: relative; z-index: 10;
-            animation: fadeInContainer 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-height: 85vh; overflow-y: auto;
+            animation: slideUp 0.7s ease-out;
+            max-height: 88vh; overflow-y: auto;
+            border: 2px solid white;
         }
 
         .active { display: block; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        @keyframes fadeInContainer { from { transform: scale(0.8) translateY(30px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
-
-        h1 { color: var(--dark-pink); font-family: 'Dancing Script', cursive; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        
-        /* Interactive Animation: Heartbeat */
-        .heart-loader {
-            width: 100px; height: 100px; margin: 0 auto 20px;
-            background-color: var(--dark-pink);
-            display: inline-block; position: relative;
-            transform: rotate(-45deg);
-            animation: heartbeat 1.2s infinite;
-        }
-        .heart-loader::before, .heart-loader::after {
-            content: ""; width: 100px; height: 100px;
-            background-color: var(--dark-pink);
-            border-radius: 50%; position: absolute;
-        }
-        .heart-loader::before { top: -50px; left: 0; }
-        .heart-loader::after { top: 0; left: 50px; }
-        @keyframes heartbeat { 0% { transform: rotate(-45deg) scale(0.8); } 5% { transform: rotate(-45deg) scale(0.9); } 10% { transform: rotate(-45deg) scale(0.8); } 15% { transform: rotate(-45deg) scale(1); } 50% { transform: rotate(-45deg) scale(0.8); } 100% { transform: rotate(-45deg) scale(0.8); } }
+        h1 { color: var(--dark-pink); font-family: 'Dancing Script', cursive; font-size: 2.3rem; margin: 10px 0; }
+        p { font-size: 0.95rem; color: #555; line-height: 1.5; }
 
         /* Video Section */
         .video-box { 
             position: relative; width: 100%; border-radius: 25px; 
-            overflow: hidden; border: 5px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2); background: #000; margin: 20px 0;
+            overflow: hidden; border: 4px solid var(--dark-pink); background: #000; margin: 20px 0;
         }
-        video { width: 100%; display: block; }
+        video { width: 100%; display: block; max-height: 400px; }
         
-        .replay-btn {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: var(--dark-pink); color: white; padding: 15px 25px;
-            border-radius: 30px; cursor: pointer; display: none; border: none; font-weight: bold;
+        .replay-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.65); display: none;
+            justify-content: center; align-items: center;
         }
 
         button {
             background: linear-gradient(45deg, var(--dark-pink), var(--rose-red));
             color: white; border: none; padding: 14px 35px; border-radius: 50px;
-            cursor: pointer; font-weight: 600; transition: 0.4s; margin-top: 20px;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4); text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; font-weight: 600; transition: 0.3s; margin-top: 15px;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
         }
-        button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.6); }
+        button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(255, 77, 109, 0.5); }
 
         .rose-box { display: flex; justify-content: center; gap: 20px; font-size: 55px; margin: 25px 0; }
-        .rose { cursor: pointer; transition: 0.4s; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); }
-        .rose:hover { transform: rotate(15deg) scale(1.3); }
+        .rose { cursor: pointer; transition: 0.4s; filter: drop-shadow(0 5px 8px rgba(0,0,0,0.1)); }
+        .rose:hover { transform: scale(1.2) rotate(10deg); }
 
         .letter-content {
-            text-align: left; background: #fffdf5; border: 2px solid #f0e6d2;
+            text-align: left; background: #fffdf5; border-left: 5px solid var(--dark-pink);
             padding: 30px; color: #333; line-height: 2; font-family: 'Great Vibes', cursive;
-            font-size: 1.4rem; border-radius: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
-            max-height: 400px; overflow-y: scroll;
+            font-size: 1.5rem; border-radius: 10px; max-height: 400px; overflow-y: auto;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
         }
 
-        #msg-display { color: var(--rose-red); font-weight: 600; min-height: 60px; margin-top: 15px; font-size: 1.1rem; }
+        .cat-gif { width: 130px; margin-bottom: 10px; border-radius: 15px; }
+        #msg-display { color: var(--rose-red); font-weight: 600; min-height: 55px; margin-top: 10px; font-style: italic; }
     </style>
 </head>
 <body>
 
-    <div id="bg-elements"></div>
+    <div id="decorations-container"></div>
 
-    <div style="display:none">
-        <iframe id="ytPlayer" width="0" height="0" src="https://www.youtube.com/embed/l6E16JAk_Fs?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=l6E16JAk_Fs" frameborder="0"></iframe>
+    <div style="position: absolute; top: -1000px;">
+        <div id="player"></div>
     </div>
 
     <div id="page1" class="container active">
-        <div class="heart-loader"></div>
-        <h1>Welcome, My Love ❤️</h1>
-        <p>You are about to enter a world made only for you. Please turn up your volume for the music...</p>
-        <button onclick="startExperience()">Enter My Heart 🫶🏻</button>
+        <img src="https://media.tenor.com/On7tBy_9mS0AAAAi/peach-goma-love.gif" class="cat-gif">
+        <h1>For My Special One 🎀</h1>
+        <p>I have designed this little world just for you. Turn up your volume and step inside...</p>
+        <button onclick="startExperience()">Start the Magic 🫶🏻</button>
     </div>
 
     <div id="page2" class="container">
+        <h1>Pick Your Roses 🌹</h1>
+        <p>Tap each rose to unlock a secret message...</p>
+        <div class="rose-box">
+            <span class="rose" onclick="reveal('The moment you smile, my whole world lights up. Never lose that glow! ✨')">🌹</span>
+            <span class="rose" onclick="reveal('You are the answer to every prayer I ever made. I am so lucky to have you. ❤️')">🌹</span>
+            <span class="rose" onclick="reveal('I promise to cherish you today, tomorrow, and for all the lifetimes to come. 💍')">🌹</span>
+        </div>
+        <div id="msg-display"></div>
+        <button id="nxt-btn" style="display:none;" onclick="nextPage(3)">Watch This... 🎬</button>
+    </div>
+
+    <div id="page3" class="container">
         <h1>Just for you 🫶🏻🎀</h1>
         <div class="video-box">
             <video id="mainVideo" onended="videoEnded()">
                 <source src="https://cdn.discordapp.com/attachments/1421877888877203559/1466336739311489057/lv_7555554315964878141_20260117212840.mp4?ex=697c6001&is=697b0e81&hm=ce5b8a803dcfde1f356dd870d25e6f42b03c64a79f69e3b99b21fe03c5d93424&" type="video/mp4">
             </video>
-            <button class="replay-btn" id="replayBtn" onclick="replayVideo()">Watch Again 🔄</button>
+            <div class="replay-overlay" id="replayOverlay">
+                <button onclick="replayVideo()">Replay 🔄</button>
+            </div>
         </div>
-        <p>These are the moments that define my happiness.</p>
-        <button onclick="nextPage(3)">Continue... ✨</button>
-    </div>
-
-    <div id="page3" class="container">
-        <h1>The Petals of Love</h1>
-        <p>Tap each rose to see my promises to you...</p>
-        <div class="rose-box">
-            <span class="rose" onclick="reveal('I promise to hold your hand through every high and every low. Forever. 💍')">🌹</span>
-            <span class="rose" onclick="reveal('I promise to be your safest place, your biggest fan, and your home. 🏠❤️')">🌹</span>
-            <span class="rose" onclick="reveal('I promise to love you more with every single sunset we see together. 🌅')">🌹</span>
-        </div>
-        <div id="msg-display"></div>
-        <button id="nxt-btn" style="display:none;" onclick="nextPage(4)">Open My Letter 💌</button>
+        <p>Every memory with you is my favorite memory.</p>
+        <button onclick="nextPage(4)">Open My Letter 💌</button>
     </div>
 
     <div id="page4" class="container">
-        <h1>My Forever Promise...</h1>
+        <h1>My Heart on Paper...</h1>
         <div class="letter-content">
-            My Dearest,
+            My Dearest Love,
 
-            As I sit here trying to put my feelings into words, I realize that even 500 words wouldn't be enough to explain how much you mean to me. But I'll try, because you deserve to know every single thought that crosses my mind when I think of you.
+            As I sit here trying to put my feelings into words, I realize that even a thousand pages wouldn't be enough to explain how much you mean to me. You are the rhythm in my heartbeat and the peace in my chaos. Every single day, I wake up feeling like the luckiest person in the world simply because I know you are mine.
 
-            Meeting you was like finding a piece of myself that I didn't even know was missing. You aren't just a part of my life; you are the very rhythm of my heartbeat. Every morning I wake up, my first thought is of you, and every night before I sleep, I thank the universe for bringing us together. You have this magical way of making the ordinary feel extraordinary. 
+            Meeting you was the turning point of my life. Before you, everything seemed like a black-and-white movie, but you brought a burst of color that changed my world forever. You taught me what it truly means to be loved and to love someone without any conditions. Your smile is my daily dose of happiness, and your eyes are the only place where I truly feel at home. I cherish the way you laugh at my silly jokes and the way you hold my hand like you never want to let go.
 
-            Your smile is my favorite sun—it lights up my world even on the darkest days. Your laughter is the music I could listen to for the rest of my life. I remember the video we just watched, and it makes me realize how far we've come and how many more memories we are yet to build. Every second in those clips is a testament to the love that we share—a love that is pure, deep, and unbreakable.
+            I remember the clips we just watched in the video; they aren't just videos for me. They are proof of a beautiful journey we started together. Every smile, every glance, and every second shared is a treasure I will keep locked in my heart forever. I want to build a mountain of such memories with you, where we can look back and smile even when we are old and gray.
 
-            I want you to know that I see you. I see the kindness in your eyes, the strength in your soul, and the beauty in your heart. You make me want to be a better person, not because I have to, but because I want to be worthy of someone as incredible as you. You are my peace in a chaotic world, my calm in the middle of a storm, and my home wherever we may be.
+            You are my soulmate, my best friend, and my greatest adventure. Your kindness inspires me to be a better person, and your strength gives me the courage to face anything life throws at us. I promise to be the shoulder you lean on when you’re tired, the listener when you need to vent, and the one who celebrates your smallest wins with the loudest cheers. I want to grow with you, learn with you, and build a future that is as bright and beautiful as your soul.
 
-            On this Rose Day, I'm not just giving you a digital flower; I'm giving you my soul. I promise to cherish you, to respect you, and to never let a day pass without telling you how beautiful you are. I promise to be the shoulder you cry on and the person you celebrate with. I will be your rock when you feel weak and your wings when you want to fly.
+            On this Rose Day, I am not just giving you a digital flower; I am giving you a piece of my soul. I promise to protect our love like the most delicate rose and to make sure it blooms even in the toughest seasons. I will be your rock when you feel weak and your wings when you want to fly. My love for you is not a feeling; it is a choice I make every morning when I wake up, and a promise I keep every night before I sleep.
 
-            Our love is like a rose—it started as a small bud and has grown into a magnificent bloom. And just like a rose, I will protect it with everything I have. No matter what life throws at us, no matter the distance or the difficulties, I will always be here, standing by your side. You are my soulmate, my best friend, and my greatest adventure. 
+            Thank you for being my constant. Thank you for staying. Thank you for being the most amazing person I have ever known. I love you more than words can express, more than distance can divide, and more than time can measure. Our story is my favorite story, and I can’t wait to see what the next chapters hold for us. You are my forever, my always, and my everything.
 
-            Thank you for choosing me. Thank you for staying. Thank you for being exactly who you are. I love you more than words, more than distance, and more than time itself. 
-
-            Forever and always, your one and only. ❤️
+            With all my love, always. ❤️
         </div>
         <button onclick="nextPage(5)">Final Surprise 🌸</button>
     </div>
 
     <div id="page5" class="container">
-        <div class="heart-loader"></div>
-        <h1>I Love You To Infinity!</h1>
-        <p style="font-size: 1.3rem; color: var(--rose-red); font-weight: bold; font-family: 'Great Vibes';">Happy Rose Day, My Queen! 🌹</p>
-        <p>May our love continue to bloom forever.</p>
-        <button onclick="location.reload()">Re-live the Magic ❤️</button>
+        <h1>Forever & Always!</h1>
+        <img src="https://media.tenor.com/it76yY9_97wAAAAi/peach-and-goma-peach-goma.gif" class="cat-gif">
+        <p style="font-size: 1.4rem; color: var(--rose-red); font-weight: bold; font-family: 'Great Vibes';">Happy Rose Day, My Queen! 🌹</p>
+        <p>May our love continue to bloom for an eternity.</p>
+        <button onclick="location.reload()">Re-live the Love ❤️</button>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        const mainVideo = document.getElementById('mainVideo');
-        const replayBtn = document.getElementById('replayBtn');
-        const ytPlayer = document.getElementById('ytPlayer');
-
-        // Background Decorations
-        const bgContainer = document.getElementById('bg-elements');
-        function createDecorations() {
-            for(let i=0; i<15; i++) {
-                let petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.style.width = Math.random() * 15 + 10 + 'px';
-                petal.style.height = petal.style.width;
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDelay = Math.random() * 5 + 's';
-                bgContainer.appendChild(petal);
-            }
-            for(let i=0; i<30; i++) {
-                let star = document.createElement('div');
-                star.className = 'star';
-                star.style.width = '2px'; star.style.height = '2px';
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.top = Math.random() * 100 + 'vh';
-                star.style.animationDelay = Math.random() * 2 + 's';
-                bgContainer.appendChild(star);
-            }
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0', videoId: 'l6E16JAk_Fs',
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': 'l6E16JAk_Fs' },
+                events: { 'onReady': (e) => e.target.mute() }
+            });
         }
-        createDecorations();
+
+        const mainVideo = document.getElementById('mainVideo');
+        const replayOverlay = document.getElementById('replayOverlay');
 
         function startExperience() {
-            // Unmute YouTube Player via API if possible, otherwise it plays hidden
-            ytPlayer.src = ytPlayer.src.replace("mute=1", "mute=0");
+            if (player) { player.unMute(); player.playVideo(); }
             nextPage(2);
-            mainVideo.play();
         }
 
         function videoEnded() {
-            replayBtn.style.display = 'block';
-            ytPlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            replayOverlay.style.display = 'flex';
+            if (player) player.playVideo(); 
         }
 
         function replayVideo() {
-            replayBtn.style.display = 'none';
-            ytPlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            replayOverlay.style.display = 'none';
+            if (player) player.pauseVideo();
             mainVideo.currentTime = 0;
             mainVideo.play();
         }
 
-        let count = 0;
         function nextPage(n) {
             document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
             document.getElementById('page'+n).classList.add('active');
-            if(n !== 2) {
-                mainVideo.pause();
-                ytPlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            
+            if(n === 3) {
+                if (player) player.pauseVideo(); // Music stops for video
+                mainVideo.play();
             } else {
-                ytPlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                mainVideo.pause();
+                if (player) player.playVideo(); // Music resumes
             }
         }
 
+        let count = 0;
         function reveal(m) {
-            document.getElementById('msg-display').innerHTML = `<p style="animation: fadeIn 0.5s;">${m}</p>`;
+            document.getElementById('msg-display').innerText = m;
             count++;
             if(count >= 3) document.getElementById('nxt-btn').style.display = 'inline-block';
         }
+
+        // Background Decorations (Hearts and Petals)
+        const decoContainer = document.getElementById('decorations-container');
+        const symbols = ['❤️', '🌹', '🌸', '✨'];
+        setInterval(() => {
+            const el = document.createElement('div');
+            el.className = 'decoration';
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = Math.random() * 20 + 10 + 'px';
+            el.style.animationDuration = Math.random() * 3 + 4 + 's';
+            decoContainer.appendChild(el);
+            setTimeout(() => el.remove(), 7000);
+        }, 500);
     </script>
 </body>
 </html>
