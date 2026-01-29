@@ -16,23 +16,22 @@
 
         h1 { font-family: 'Dancing Script', cursive; color: var(--primary); font-size: 1.8rem; margin: 10px 0; }
         .game-img { width: 180px; height: auto; margin: 10px auto; display: block; border-radius: 15px; }
-        .btn { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 15px; width: 85%; font-weight: 600; transition: 0.3s; }
-        .btn:active { transform: scale(0.95); }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 15px; width: 85%; font-weight: 600; }
 
         /* Hidden Message Hunt */
-        .hunt-area { position: relative; width: 280px; height: 280px; margin: 0 auto; background: url('https://media.tenor.com/On7tBy_9mS0AAAAi/peach-goma-love.gif') center/cover; border-radius: 15px; border: 3px solid var(--primary); }
-        .hotspot { position: absolute; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.01); border-radius: 50%; cursor: pointer; }
+        .hunt-area { position: relative; width: 280px; height: 280px; margin: 0 auto; background: url('https://media.tenor.com/it76yY9_97wAAAAi/peach-and-goma-peach-goma.gif') center/cover; border-radius: 15px; border: 3px solid var(--primary); }
+        .hotspot { position: absolute; width: 60px; height: 60px; background: transparent; cursor: pointer; }
 
         /* Manual Scrolling Reasons */
         #reasons-box { height: 350px; overflow-y: scroll; border: 2px solid #ffccd5; padding: 15px; background: #fffdf5; border-radius: 15px; margin: 15px 0; }
         .reason-item { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; text-align: left; color: #444; line-height: 1.4; }
 
-        .timeline { text-align: left; padding: 15px; border-left: 2px solid var(--primary); margin-left: 20px; }
-        .time-item { margin-bottom: 25px; position: relative; padding-left: 20px; font-size: 0.9rem; }
-        .time-item::before { content: '🌸'; position: absolute; left: -32px; background: white; }
+        /* Catch Game */
+        #catch-game { height: 200px; position: relative; background: #fff0f3; border-radius: 15px; overflow: hidden; border: 1px dashed var(--primary); }
+        #moving-heart { position: absolute; cursor: pointer; font-size: 2rem; transition: 0.2s; }
 
         video { width: 100%; border-radius: 20px; border: 3px solid var(--primary); }
-        .letter-content { text-align: left; font-family: 'Great Vibes', cursive; font-size: 1.6rem; line-height: 1.8; background: #fffdf5; padding: 25px; border-radius: 15px; white-space: pre-wrap; color: #333; }
+        .letter-content { text-align: left; font-family: 'Great Vibes', cursive; font-size: 1.6rem; line-height: 1.8; background: #fffdf5; padding: 25px; border-radius: 15px; color: #333; }
     </style>
 </head>
 <body>
@@ -42,12 +41,12 @@
     <div id="page1" class="container active">
         <h1>Suno, Meri Jaan... ❤️</h1>
         <img src="https://media.tenor.com/it76yY9_97wAAAAi/peach-and-goma-peach-goma.gif" class="game-img">
-        <p>Aapke liye maine kuch bahut gehra aur pyaara banaya hai. Ise araam se har ek step par mehsoos kijiye...</p>
-        <button class="btn" onclick="startExperience()">Ji, Bilkul ✨</button>
+        <p>Aapke liye maine kuch bahut gehra aur pyaara banaya hai. Ise har ek step par mehsoos kijiye...</p>
+        <button class="btn" onclick="startExperience()">Ji, Shuru Karein ✨</button>
     </div>
 
     <div id="page2" class="container">
-        <h1>Level 1: Hamari Yaadein 🧩</h1>
+        <h1>Level 1: Memory Test 🧩</h1>
         <img src="https://media.tenor.com/X9S79Uu3v7MAAAAi/mochi-mochi-peach-cat-cat.gif" class="game-img">
         <p>Aapko yaad hai hamari pehli call kitni der chali thi?</p>
         <button class="btn" style="background:white; color:#444; border:1px solid #ddd; margin:5px 0;" onclick="alert('Nahi ji, thoda aur yaad kijiye!')">08:45</button>
@@ -57,61 +56,58 @@
 
     <div id="page3" class="container">
         <h1>Level 2: Chhupi Hui Khushiyan 🔍</h1>
-        <p>Is photo mein 4 jagah "Secret Words" hain. Unhe dhoondh kar tap kijiye!</p>
+        <p>Is photo mein 4 jagah tap karke secret words dhoondhiye!</p>
         <div class="hunt-area">
-            <div class="hotspot" style="top: 10%; left: 10%;" onclick="found(1, 'Hamesha')"></div>
-            <div class="hotspot" style="top: 75%; left: 70%;" onclick="found(2, 'Sath')"></div>
-            <div class="hotspot" style="top: 15%; left: 65%;" onclick="found(3, 'Rehna')"></div>
-            <div class="hotspot" style="top: 70%; left: 15%;" onclick="found(4, 'Mere')"></div>
+            <div class="hotspot" style="top: 5%; left: 5%;" onclick="found(1, 'Hamesha')"></div>
+            <div class="hotspot" style="top: 75%; left: 75%;" onclick="found(2, 'Sath')"></div>
+            <div class="hotspot" style="top: 15%; left: 70%;" onclick="found(3, 'Rehna')"></div>
+            <div class="hotspot" style="top: 70%; left: 10%;" onclick="found(4, 'Mere')"></div>
         </div>
         <p id="found-msg" style="color:var(--secondary); font-weight:bold; height:20px;"></p>
-        <button id="hunt-nxt" class="btn" style="display:none" onclick="nextPage(4)">Agla Level ➡️</button>
+        <button id="hunt-nxt" class="btn" style="display:none" onclick="nextPage(4)">Level 3 Par Chalein ➡️</button>
     </div>
 
     <div id="page4" class="container">
         <h1>Level 3: Kyun Itna Pyar Hai? ❤️</h1>
-        <p>Aapko chune ke 100 kaaran. Ise araam se scroll karke padhiye...</p>
+        <p>Ise poora niche tak scroll karke padhiye...</p>
         <div id="reasons-box">
             <div id="reasons-list"></div>
         </div>
-        <button id="reasons-nxt" class="btn" style="display:none" onclick="nextPage(5)">Hamara Future 🏠</button>
+        <button id="reasons-nxt" class="btn" style="display:none" onclick="nextPage(5)">Ek Chota Sa Game 🎮</button>
     </div>
 
     <div id="page5" class="container">
-        <h1>Level 4: Hamara Safar 🏠</h1>
-        <div class="timeline">
-            <div class="time-item"><b>Abhi:</b> Aapki ye pyari si muskurahat jo mere liye sabkuch hai.</div>
-            <div class="time-item"><b>Agla Saal:</b> Humari wo pehli trip jiska humein besabri se intezar hai.</div>
-            <div class="time-item"><b>2027:</b> Humara apna chota sa aashiyana jahan sirf sukoon hoga.</div>
-            <div class="time-item"><b>Hamesha:</b> Aapka haath mere haath mein, har mushkil ke waqt.</div>
+        <h1>Level 4: Catch My Heart 💖</h1>
+        <p>Mera dil bahut tezz bhag raha hai, ise 5 baar pakdiye!</p>
+        <div id="catch-game">
+            <div id="moving-heart" onclick="catchHeart()">❤️</div>
         </div>
-        <button class="btn" onclick="nextPage(6)">Special Video Dekhiye 🎬</button>
+        <p id="catch-count">Pakda gaya: 0/5</p>
+        <button id="catch-nxt" class="btn" style="display:none" onclick="nextPage(6)">Yaadein Dekhiye 🎬</button>
     </div>
 
     <div id="page6" class="container">
-        <h1>Level 5: For you 🫶🏻🎀</h1>
+        <h1>Level 5: Fir you🫶🏻🎀</h1>
         <video id="mainVideo" controls onended="document.getElementById('finalNxt').style.display='block';">
-            <source src="https://raw.githubusercontent.com/Anshul-code-hub/cdn/main/your_video.mp4" type="video/mp4">
-            </video>
+            <source src="https://cdn.discordapp.com/attachments/1421877888877203559/1466336739311489057/lv_7555554315964878141_20260117212840.mp4?ex=697c6001&is=697b0e81&hm=ce5b8a803dcfde1f356dd870d25e6f42b03c64a79f69e3b99b21fe03c5d93424&" type="video/mp4">
+        </video>
         <button class="btn" id="finalNxt" style="display:none" onclick="nextPage(7)">Mera Khat Padhiye 💌</button>
     </div>
 
     <div id="page7" class="container">
         <h1>Mera Akhri Khat ❤️</h1>
-        <div class="letter-content">
+        <div class="letter-content" id="finalLetter">
 Meri Pyaari Jaan,
 
-Main aaj jo bhi likh raha hoon, wo mere dil ki gehraiyon se nikal raha hai. Aapne aaj is safar mein jo waqt bitaya, wo sirf ek website nahi thi, wo meri koshish thi aapko ye batane ki ki aap mere liye kitni khaas hain. 
+Aapne is safar mein jo waqt bitaya, wo dikhata hai ki aap mujhse kitna pyar karti hain. Maine ye sab isliye banaya taaki aapko bata sakun ki aap meri zindagi mein kya mayne rakhti hain. Har ek choti yaad, har ek call, aur har ek muskurahat mere liye ek khazane jaisi hai.
 
-Aapki wo pehli call se lekar aaj tak, har ek lamha mere liye kisi sapne se kam nahi hai. Main aksar baithkar sochta hoon ki aapne mujh mein aisa kya dekha jo itna pyar kiya, par sach toh ye hai ki aapne mujhe mujhse behtar banaya hai. Jab aap smile karti hain, toh lagta hai jaise duniya ki saari pareshaaniyan khatam ho gayi hon. 
+Jab hum pehli baar mile the, mujhe nahi pata tha ki aap meri poori duniya ban jayengi. Aapne mujhe sikhaya ki kisi ka sath hona kya hota hai. Main waada karta hoon ki main hamesha aapka haath thaame rakhunga, chahe rasta kitna bhi mushkil ho. Aap meri sabse badi taqat ho.
 
-Main jaanta hoon main kabhi kabhi bahut ziddi ho jata hoon, ya aapko pareshan kar deta hoon, par yakeen maniye, mera har ek ehsaas sirf aapke liye hai. Main chahta hoon ki humara sath hamesha aise hi bana rahe. Hum milkar wo har sapna pura karein jo humne dekha hai—wo lambi trips, wo dher saari shopping, aur wo shaamein jahan sirf hum dono hon.
+Mujhe aapki masoomiyat, aapka mujh par gussa karna, aur fir itne pyar se manana bahut pasand hai. Main hamesha koshish karunga ki aapki aankhon mein sirf khushi ke aansu hon. Hum milkar apne har sapne ko pura karenge. 
 
-Aap meri soulmate hain, meri sabse acchi dost hain aur meri poori duniya hain. Aapke bina meri zindagi ek khali kitab ki tarah hai. Main waada karta hoon ki main hamesha aapka sath dunga, chahe halaat kaise bhi hon. Main hamesha aapko wo respect aur wo pyar dunga jiske aap haqdaar hain. 
+Aap sirf meri girlfriend nahi ho, aap mera sukoon ho. Thank you mere sath rehne ke liye aur mujhe itna pyar dene ke liye. Ye khat sirf shuruat hai humari us lambi kahani ki jo humein sath likhni hai.
 
-Aapne mujhe sikhaya ki mohabbat sirf kehne ki cheez nahi, nibhane ki cheez hai. Main hamesha aapka hi rahunga. Thank you meri zindagi mein aane ke liye aur use itna haseen banane ke liye. Aapki masoomiyat aur aapka ye bholapan hamesha aise hi rakhna. 
-
-I love you more than words can ever describe. Forever and always! ❤️
+Main hamesha aapka hi rahunga. I love you so much, forever and always! ❤️
         </div>
         <button class="btn" onclick="location.reload()">Dobara Dekhiye ❤️</button>
     </div>
@@ -122,11 +118,11 @@ I love you more than words can ever describe. Forever and always! ❤️
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0', videoId: 'l6E16JAk_Fs',
-                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': 'l6E16JAk_Fs' }
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': 'l6E16JAk_Fs', 'mute': 0 }
             });
         }
 
-        function startExperience() { if(player) player.unMute(); nextPage(2); }
+        function startExperience() { if(player) { player.playVideo(); player.unMute(); } nextPage(2); }
 
         function nextPage(n) {
             document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
@@ -139,28 +135,32 @@ I love you more than words can ever describe. Forever and always! ❤️
 
         let foundCount = 0;
         function found(id, word) {
-            document.getElementById('found-msg').innerText = "Found: " + word + " ✨";
+            document.getElementById('found-msg').innerText = "Dhoondh liya: " + word + " ✨";
             foundCount++;
             if(foundCount >= 4) document.getElementById('hunt-nxt').style.display = 'block';
         }
 
+        let catched = 0;
+        function catchHeart() {
+            catched++;
+            document.getElementById('catch-count').innerText = "Pakda gaya: " + catched + "/5";
+            const h = document.getElementById('moving-heart');
+            h.style.top = Math.random() * 150 + "px";
+            h.style.left = Math.random() * 250 + "px";
+            if(catched >= 5) document.getElementById('catch-nxt').style.display = 'block';
+        }
+
         function loadReasons() {
             const list = document.getElementById('reasons-list');
-            const data = [
-                "Aapki smile jo sab kuch bhula deti hai.", "Aapki masoomiyat.", "Aapka mera itna khayal rakhna.", "Aapka mujhse ladna aur fir manana.", "Humari lambi baatein.", "Aapka mujh par bharosa karna.", "Aapka mere bure jokes par hasna.", "Aapka mujhe samjhana.", "Aapka mere nakhre uthana.", "Aapka meri har baat sunna.", "Aapka mera support banna.", "Aapki aankhein.", "Aapka mere liye special feel karwana.", "Aapka mere sath budha hone ka sapna.", "Aapki sadgi.", "Aapka mujhe hamesha 'Aap' kehna.", "Aapka mere liye rona.", "Aapka mere liye itna wait karna.", "Aapki awaaz.", "Aapka meri fikr karna."
-            ];
-            for(let i=0; i<100; i++) {
-                const div = document.createElement('div');
-                div.className = 'reason-item';
-                div.innerText = (i+1) + ". " + (data[i % data.length] || "Aapka mere sath hamesha rehna.");
-                list.appendChild(div);
+            const arr = ["Aapki smile", "Aapka care", "Aapki awaaz", "Aapka gussa", "Humari call", "Aapka pyar"];
+            for(let i=1; i<=100; i++) {
+                const d = document.createElement('div');
+                d.className = 'reason-item';
+                d.innerText = i + ". " + arr[i % arr.length] + " (Special Reason #" + i + ")";
+                list.appendChild(d);
             }
             const box = document.getElementById('reasons-box');
-            box.onscroll = function() {
-                if (box.scrollHeight - box.scrollTop <= box.clientHeight + 2) {
-                    document.getElementById('reasons-nxt').style.display = 'block';
-                }
-            };
+            box.onscroll = () => { if(box.scrollHeight - box.scrollTop <= box.clientHeight + 2) document.getElementById('reasons-nxt').style.display = 'block'; };
         }
     </script>
 </body>
