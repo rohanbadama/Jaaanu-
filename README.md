@@ -3,168 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Anniversary Journey ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Happy 1st Anniversary My Love</title>
     <style>
-        :root { --p: #fff0f3; --s: #ff4d6d; --text: #444; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        body { background: var(--p); height: 100vh; overflow: hidden; }
-        
-        /* Persistent Background Music Container */
-        #music-container { position: fixed; top: -100px; left: -100px; width: 1px; height: 1px; overflow: hidden; }
+        :root {
+            --pink: #ffafcc;
+            --dark-pink: #ff2a6d;
+            --bg-color: #fff0f3;
+        }
 
-        .page { display: none; height: 100vh; width: 100vw; justify-content: center; align-items: center; position: absolute; padding: 20px; text-align: center; }
-        .active { display: flex; animation: fadeIn 0.5s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
 
-        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2); 
-                  width: 100%; max-width: 400px; border: 2px solid #ffb3c1; position: relative; max-height: 90vh; overflow-y: auto; }
-        
-        h1, h2 { font-family: 'Dancing Script', cursive; color: var(--s); margin-bottom: 15px; }
-        .media-frame { border-radius: 15px; overflow: hidden; margin: 15px 0; background: #000; min-height: 100px; border: 3px solid #ffe5ec; }
-        .media-frame img, .media-frame video { width: 100%; display: block; max-height: 350px; }
+        /* Background Slideshow */
+        #slideshow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            display: none;
+        }
+        .slide {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
 
-        .letter-box { background: #fffcf2; padding: 20px; border-radius: 10px; text-align: left; font-size: 0.9rem; 
-                      line-height: 1.6; color: #333; max-height: 300px; overflow-y: scroll; border-left: 5px solid var(--s); white-space: pre-wrap; }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            border: 5px solid var(--pink);
+        }
 
-        .next-btn { background: var(--s); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: 600; margin-top: 15px; width: 80%; }
-        
-        .game-btn { background: white; border: 2px solid var(--s); color: var(--s); padding: 10px; margin: 5px; border-radius: 12px; cursor: pointer; display: inline-block; transition: 0.2s; }
-        .game-btn:hover { background: var(--s); color: white; }
+        .hidden { display: none; }
 
-        .heart-float { position: fixed; color: var(--s); font-size: 20px; z-index: -1; animation: up 4s linear infinite; }
-        @keyframes up { 0% { transform: translateY(110vh) scale(0); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
+        img, video {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        button:hover { transform: scale(1.1); }
+
+        .typing {
+            font-size: 1.2rem;
+            text-align: left;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .glowing-text {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--dark-pink), 0 0 20px var(--dark-pink), 0 0 40px var(--dark-pink);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { opacity: 0.7; }
+            to { opacity: 1; text-shadow: 0 0 20px var(--dark-pink), 0 0 30px var(--dark-pink); }
+        }
+
+        .gift-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .rose { cursor: pointer; font-size: 2rem; }
     </style>
 </head>
 <body>
 
-<div id="music-container">
-    <div id="player"></div>
-</div>
+    <audio id="bgMusic" loop>
+        <source src="https://www.youtube.com/watch?v=fPii4kwD7Zc" type="audio/mpeg">
+        </audio>
 
-<main id="app">
-    <section class="page active">
-        <div class="card">
-            <h1>Happy 1 Year! ❤️</h1>
-            <div class="media-frame"><img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466400575427051602/From_KlickPin_CF_Hello_Hi_Duck_GIF.gif"></div>
-            <p>I have a surprise for you. Ready?</p>
-            <button class="next-btn" onclick="startApp()">Start Experience 💖</button>
+    <div id="slideshow"></div>
+
+    <div id="page1" class="card">
+        <h1>Welcome, My Love ❤️</h1>
+        <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466400575427051602/From_KlickPin_CF_Hello_Hi_Duck_GIF.gif" alt="Welcome">
+        <p>I have a special surprise for you...</p>
+        <button onclick="nextPage(2); playMusic()">Start Surprise</button>
+    </div>
+
+    <div id="page2" class="card hidden">
+        <h2>Mini Game 🎮</h2>
+        <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466399975205376052/From_KlickPin_CF_Resultado_de_imagen_para_Milk__Mocha_STICKERS___Hug_gif_Cute_gif_Cute_love_gif.gif">
+        <p>Wait for 5 seconds to unlock next stage...</p>
+        <div id="timer">5</div>
+    </div>
+
+    <div id="videoPages" class="card hidden">
+        <h2 id="videoTitle">Our Memories</h2>
+        <video id="mainVideo" controls onplay="pauseMusic()" onended="videoEnded()">
+            <source src="" type="video/mp4">
+        </video>
+        <p id="videoStatus">Watch till the end!</p>
+        <button id="nextVideoBtn" class="hidden" onclick="loadNextVideo()">Next Video</button>
+    </div>
+
+    <div id="page8" class="card hidden">
+        <h2>Pick a Rose 🌹</h2>
+        <div class="gift-box" id="roseBox">
+            <div class="rose" onclick="revealMessage(0)">🌹</div>
+            <div class="rose" onclick="revealMessage(1)">🌹</div>
+            <div class="rose" onclick="revealMessage(2)">🌹</div>
+            <div class="rose" onclick="revealMessage(3)">🌹</div>
+            <div class="rose" onclick="revealMessage(4)">🌹</div>
         </div>
-    </section>
+        <p id="roseMessage"></p>
+        <button id="letterBtn" class="hidden" onclick="nextPage(9)">Open Letter</button>
+    </div>
 
-    <section class="page"><div class="card"><h2>Game 1: Catch the Heart</h2><div id="g1" style="height:150px; position:relative;"><div id="t1" onclick="score(1)" style="position:absolute; cursor:pointer; font-size:40px;">❤️</div></div><p>Score: <span id="s1">0</span>/10</p></div></section>
-    <section class="page"><div class="card"><h2>Game 2: Memory Test</h2><p>Click the hearts in order: 1, 2, 3</p><button class="game-btn" onclick="check(1)">1</button><button class="game-btn" onclick="check(2)">2</button><button class="game-btn" onclick="check(3)">3</button></div></section>
-    <section class="page"><div class="card"><h2>Game 3: Find Me</h2><p>Which one is our anniversary month?</p><button class="game-btn" onclick="alert('Try again!')">Dec</button><button class="game-btn" onclick="nextPage()">Jan</button><button class="game-btn" onclick="alert('Try again!')">Feb</button></div></section>
-    <section class="page"><div class="card"><h2>Game 4: Quick Math</h2><p>You + Me = ?</p><button class="game-btn" onclick="nextPage()">Everything ❤️</button></div></section>
+    <div id="page9" class="card hidden">
+        <h2>My Letter to You ✉️</h2>
+        <div id="letterArea" class="typing"></div>
+        <button id="finalBtn" class="hidden" onclick="startEnd()">Love You!</button>
+    </div>
+
+    <div id="page10" class="hidden">
+        <h1 class="glowing-text">I LOVE YOU FOREVER ❤️</h1>
+        <p style="color: white;">Happy 1st Anniversary!</p>
+    </div>
 
     <script>
-        const vLinks = [
+        let music = document.getElementById('bgMusic');
+        let currentVideoIndex = 0;
+        const videoLinks = [
             "https://cdn.discordapp.com/attachments/1421877888877203559/1466448687809954058/lv_7555554315964878141_20260117212840.mp4",
             "https://cdn.discordapp.com/attachments/1421877888877203559/1466448576363233361/lv_7572376034872478993_20260129201229.mp4",
             "https://cdn.discordapp.com/attachments/1421877888877203559/1466448578389217290/lv_7596206565158423861_20260129200129.mp4",
             "https://cdn.discordapp.com/attachments/1421877888877203559/1466448577013354598/lv_7591172117144587573_20260129201020.mp4",
             "https://cdn.discordapp.com/attachments/1421877888877203559/1466448579022553170/lv_7587817635014774021_20260129195708.mp4"
         ];
-        vLinks.forEach((l, i) => {
-            document.write(`<section class="page"><div class="card"><h2>Memory #${i+1} 🫶🏻</h2><div class="media-frame"><video controls onplay="toggleMusic(false)" onended="toggleMusic(true)"><source src="${l}" type="video/mp4"></video></div><button class="next-btn" onclick="nextPage()">Next</button></div></section>`);
-        });
-    </script>
 
-    <section class="page">
-        <div class="card">
-            <h2>Part 1: My Forever ✉️</h2>
-            <div class="letter-box">Happy 1 year anniversary meri FOREVER 🫶🏻 💖 Aaj jab hamari saath ki is ek saal ki journey ko yaad karta hoon, to dil me ek ajeeb si shanti aur gehra sa ehsaas bhar jaata hai... [FULL TEXT FROM YOUR MESSAGE] ...Aap meri zindagi me ek chapter nahi, balki ek aisi kahani ho jo abhi likhi ja rahi hai. I love you!</div>
-            <button class="next-btn" onclick="nextPage()">Continue Journey...</button>
-        </div>
-    </section>
-
-    <section class="page"><div class="card"><h2>Game 5: Catch Again!</h2><div id="g5" style="height:150px; position:relative;"><div id="t5" onclick="score(5)" style="position:absolute; cursor:pointer; font-size:40px;">🌸</div></div><p>Score: <span id="s5">0</span>/5</p></div></section>
-    <section class="page"><div class="card"><h2>Game 6: Do you love me?</h2><div style="display:flex; justify-content:center; gap:10px;"><button class="next-btn" onclick="nextPage()">YES! 😍</button><button class="next-btn" id="no-btn" onmouseover="moveNo()" style="background:#888">No 😢</button></div></div></section>
-    <section class="page"><div class="card"><h2>Game 7: Secret Box</h2><div id="boxes"></div></div></section>
-    <section class="page"><div class="card"><h2>Game 8: The Final Quiz</h2><p>Who is the luckiest person? (It's me!)</p><button class="next-btn" onclick="nextPage()">Me because of YOU ❤️</button></div></section>
-
-    <script>
-        const vLinks2 = [
-            "https://cdn.discordapp.com/attachments/1421877888877203559/1466448577575260437/lv_7596118272932678917_20260129200828.mp4",
-            "https://cdn.discordapp.com/attachments/1421877888877203559/1466448579022553170/lv_7587817635014774021_20260129195708.mp4",
-            "https://cdn.discordapp.com/attachments/1421877888877203559/1466448574396104777/lv_7588073915361021201_20260129201555.mp4",
-            "https://cdn.discordapp.com/attachments/1421877888877203559/1466448575012671690/lv_7365945955050474768_20260129202233.mp4",
-            "https://cdn.discordapp.com/attachments/1421877888877203559/1466448573179891743/lv_7519771999514676541_20260129202958.mp4"
+        const photos = [
+            "https://cdn.discordapp.com/attachments/1421877888877203559/1466436029279109325/FreeFire_07_15_2025_09_29_24.png",
+            "https://cdn.discordapp.com/attachments/1421877888877203559/1466436030230954035/FreeFire_08_03_2025_12_47_16.png",
+            "https://cdn.discordapp.com/attachments/1421877888877203559/1466436031375999091/IMG_20251010_030632.jpg"
+            // Baki photos yaha add karein...
         ];
-        vLinks2.forEach((l, i) => {
-            document.write(`<section class="page"><div class="card"><h2>Memory #${i+6} 💖</h2><div class="media-frame"><video controls onplay="toggleMusic(false)" onended="toggleMusic(true)"><source src="${l}" type="video/mp4"></video></div><button class="next-btn" onclick="nextPage()">Next</button></div></section>`);
-        });
-    </script>
 
-    <section class="page">
-        <div class="card">
-            <h2>Endlessly Yours ❤️</h2>
-            <div class="letter-box">pehle ye feel hota hai ki meri zindagi me jo bhi softness, jo bhi emotional depth, jo bhi sachcha care aaya hai... [FULL TEXT OF MESSAGE 2] ...Aap meri choice nahi, meri clarity ho. I love you endlessly my jaaaaaneman 😚 💖.</div>
-            <button class="next-btn" onclick="alert('Happy Anniversary!')">I Love You Forever ❤️</button>
-        </div>
-    </section>
-</main>
+        const compliments = [
+            "You are the most beautiful person I know!",
+            "Thank you for being my rock.",
+            "I learn something new from you every day.",
+            "Your smile makes everything better.",
+            "I'm so lucky to have you in my life!"
+        ];
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-    let player;
-    let currentStep = 0;
-    const pages = document.querySelectorAll('.page');
+        function playMusic() { music.play(); }
+        function pauseMusic() { music.pause(); }
 
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            height: '0', width: '0',
-            videoId: 'fPii4kwD7Zc',
-            playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'fPii4kwD7Zc' }
-        });
-    }
-
-    function startApp() {
-        player.playVideo();
-        nextPage();
-    }
-
-    function nextPage() {
-        pages[currentStep].classList.remove('active');
-        currentStep++;
-        if(currentStep < pages.length) {
-            pages[currentStep].classList.add('active');
-            toggleMusic(true); // Resume music on new page unless video starts
+        function nextPage(num) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            if(num === 2) {
+                document.getElementById('page2').classList.remove('hidden');
+                let count = 5;
+                let itv = setInterval(() => {
+                    count--;
+                    document.getElementById('timer').innerText = count;
+                    if(count === 0) {
+                        clearInterval(itv);
+                        nextPage('video');
+                    }
+                }, 1000);
+            } else if(num === 'video') {
+                document.getElementById('videoPages').classList.remove('hidden');
+                loadNextVideo();
+            } else {
+                document.getElementById('page' + num).classList.remove('hidden');
+                if(num === 9) startTyping();
+            }
         }
-    }
 
-    function toggleMusic(play) {
-        if(play) player.playVideo();
-        else player.pauseVideo();
-    }
+        function loadNextVideo() {
+            if(currentVideoIndex < videoLinks.length) {
+                const v = document.getElementById('mainVideo');
+                v.src = videoLinks[currentVideoIndex];
+                v.load();
+                document.getElementById('nextVideoBtn').classList.add('hidden');
+                document.getElementById('videoTitle').innerText = "Video " + (currentVideoIndex + 1);
+                currentVideoIndex++;
+            } else {
+                nextPage(8);
+            }
+        }
 
-    // Games Logic
-    let s1 = 0, s5 = 0;
-    function score(n) {
-        if(n==1) { s1++; document.getElementById('s1').innerText=s1; move('t1'); if(s1>=10) nextPage(); }
-        if(n==5) { s5++; document.getElementById('s5').innerText=s5; move('t5'); if(s5>=5) nextPage(); }
-    }
-    function move(id) { let t=document.getElementById(id); t.style.left=Math.random()*80+'%'; t.style.top=Math.random()*80+'%'; }
+        function videoEnded() {
+            playMusic();
+            document.getElementById('nextVideoBtn').classList.remove('hidden');
+        }
 
-    let mCheck = 1;
-    function check(n) { if(n==mCheck) { mCheck++; if(mCheck>3) nextPage(); } else { mCheck=1; alert('Wrong order! Try again.'); }}
+        let revealedCount = 0;
+        function revealMessage(idx) {
+            document.getElementById('roseMessage').innerText = compliments[idx];
+            revealedCount++;
+            if(revealedCount >= 5) document.getElementById('letterBtn').classList.remove('hidden');
+        }
 
-    function moveNo() { let b=document.getElementById('no-btn'); b.style.position='fixed'; b.style.left=Math.random()*80+'vw'; b.style.top=Math.random()*80+'vh'; }
+        function startTyping() {
+            const text = "Happy 1st Anniversary My Love!\n\nThank you for coming into my life and teaching me so much. This past year has been the best journey of my life. I promise to be by your side forever. You are my world, my everything.\n\nLove you to the moon and back!";
+            let i = 0;
+            const area = document.getElementById('letterArea');
+            function type() {
+                if (i < text.length) {
+                    area.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                } else {
+                    document.getElementById('finalBtn').classList.remove('hidden');
+                }
+            }
+            type();
+        }
 
-    // Init Box Game
-    const bDiv = document.getElementById('boxes');
-    for(let i=0; i<3; i++) {
-        let b = document.createElement('button'); b.className='game-btn'; b.innerText='???';
-        b.onclick = () => { if(i==1) nextPage(); else alert('Empty! Try another.'); };
-        bDiv.appendChild(b);
-    }
+        function startEnd() {
+            document.getElementById('page9').classList.add('hidden');
+            document.getElementById('page10').classList.remove('hidden');
+            document.getElementById('slideshow').style.display = 'block';
+            
+            // Start Slideshow
+            const show = document.getElementById('slideshow');
+            photos.forEach(url => {
+                let img = document.createElement('img');
+                img.src = url;
+                img.className = 'slide';
+                show.appendChild(img);
+            });
 
-    // Hearts background
-    setInterval(() => {
-        const h = document.createElement('div'); h.innerHTML = '❤️'; h.className = 'heart-float';
-        h.style.left = Math.random()*100+'vw'; h.style.animationDuration = (Math.random()*2+2)+'s';
-        document.body.appendChild(h); setTimeout(()=>h.remove(), 4000);
-    }, 500);
-</script>
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            slides[0].style.opacity = 1;
+            setInterval(() => {
+                slides[currentSlide].style.opacity = 0;
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].style.opacity = 1;
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
