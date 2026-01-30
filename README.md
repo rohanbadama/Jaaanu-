@@ -4,119 +4,148 @@
 <meta charset="UTF-8">
 <title>365 Days With You ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body { margin: 0; font-family: 'Arial', sans-serif; background: #fff0f5; text-align: center; overflow-x: hidden; }
-  section { min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-  .active { display: flex; animation: fadeIn 0.5s; }
-  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-  
-  .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
-  h1 { color: #d63384; font-size: 2rem; }
-  
-  /* Game Area */
-  #game-zone { width: 300px; height: 300px; background: #ffeef2; border: 3px dashed #ff4d88; position: relative; margin: 20px auto; overflow: hidden; border-radius: 15px; touch-action: none; }
-  .heart-target { position: absolute; font-size: 30px; cursor: pointer; user-select: none; }
 
-  button { background: #ff4d88; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 18px; cursor: pointer; margin-top: 15px; width: 80%; }
-  
-  .letter-box { text-align: left; height: 300px; overflow-y: auto; background: #fdfdfd; padding: 15px; border-radius: 10px; border: 1px solid #eee; font-size: 14px; line-height: 1.6; white-space: pre-wrap; margin-top: 10px; }
-  
-  video { width: 100%; border-radius: 10px; margin: 10px 0; background: #000; }
-  .gif { width: 150px; margin-bottom: 15px; }
+<style>
+body {
+  margin:0;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#ffd6e7,#fff);
+  text-align:center;
+}
+section {display:none; padding:30px 15px; min-height:100vh;}
+section.active {display:block;}
+
+h1 {color:#d63384;}
+
+button {
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  background:#ff4d88;
+  color:white;
+  font-size:16px;
+  margin:15px;
+}
+
+img, video {
+  width:90%;
+  max-width:500px;
+  border-radius:15px;
+  margin:10px 0;
+}
+
+canvas {
+  background:white;
+  border:3px solid pink;
+  border-radius:10px;
+  width:95%;
+  max-width:500px;
+  height:300px;
+}
 </style>
 </head>
 <body>
 
+<!-- Background Music -->
 <audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="https://docs.google.com/uc?export=download&id=1B9musicfileexample" type="audio/mp3">
 </audio>
 
-<section id="s1" class="active">
-  <div class="card">
-    <img class="gif" src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif">
-    <h1>365 Days With You ❤️</h1>
-    <p>Music aur Games ke saath journey shuru karein?</p>
-    <button onclick="startApp()">Yes, Start! ✨</button>
+<section id="home" class="active">
+  <h1>365 Days With You ❤️</h1>
+  <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466400575427051602/From_KlickPin_CF_Hello_Hi_Duck_GIF.gif">
+  <p>One year. One us. Forever to go.</p>
+  <button onclick="startSite()">Enter ❤️</button>
+</section>
+
+<section id="game">
+  <h1>Collect All My Love ❤️</h1>
+  <canvas id="gameCanvas"></canvas>
+  <div id="winMessage" style="display:none;">
+    <h2>You found all my love ❤️</h2>
+    <button onclick="showSection('memories')">Continue 💌</button>
   </div>
 </section>
 
-<section id="s2">
-  <div class="card">
-    <h1>Catch 5 Hearts! ❤️</h1>
-    <p>Hearts par tap karo aage badhne ke liye!</p>
-    <div id="game-zone"></div>
-    <p id="scoreText">Found: 0/5</p>
-  </div>
+<section id="memories">
+  <h1>Our Memories 📸</h1>
+  <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466399976555941918/From_KlickPin_CF_Love_You_Lots_Kiss_GIF_-_LoveYouLots_Kiss_Peachcatmatheodelanoe12.gif">
+  <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466436029279109325/FreeFire_07_15_2025_09_29_24.png">
+  <img src="https://cdn.discordapp.com/attachments/1421877888877203559/1466436031375999091/IMG_20251010_030632.jpg">
+  <button onclick="showSection('videos')">Next ▶️</button>
 </section>
 
-<section id="s3">
-  <div class="card">
-    <h1>Our Memories 🎥</h1>
-    <video id="vidPlayer" controls>
-       <source src="https://www.dropbox.com/scl/fi/o9usm8k2p2kuuk7mx6bl7/lv_7519771999514676541_20260129202958.mp4?rlkey=65vejp4ckxe7ydmn71u0s5c4j&st=ukezepjh&raw=1" type="video/mp4">
-    </video>
-    <button onclick="goLetter()">Skip to Final Letter ✉️</button>
-  </div>
+<section id="videos">
+  <h1>Our Videos 🎥</h1>
+  <video controls class="vid"><source src="https://cdn.discordapp.com/attachments/1421877888877203559/1466448687809954058/lv_7555554315964878141_20260117212840.mp4"></video>
+  <video controls class="vid"><source src="https://cdn.discordapp.com/attachments/1421877888877203559/1466448576363233361/lv_7572376034872478993_20260129201229.mp4"></video>
+  <button onclick="showSection('letter')">Final Surprise 💖</button>
 </section>
 
-<section id="s4">
-  <div class="card" style="max-width: 600px;">
-    <h1>To My Forever 🫶🏻</h1>
-    <div id="typingBox" class="letter-box"></div>
-    <p style="color: #ff4d88; font-weight: bold; margin-top: 10px;">Happy Anniversary Jaan! ❤️</p>
-  </div>
+<section id="letter">
+  <h1>Happy 1year anniversary meri FOREVER 🫶🏻💖</h1>
+  <p style="white-space:pre-line; max-width:900px; margin:auto; font-size:18px; line-height:1.8;">
+YAHAN TUM APNA FULL LETTER PASTE KARO (same jo bheja tha)
+  </p>
 </section>
 
 <script>
-const msg = `Happy 1 year anniversary meri FOREVER 🫶🏻 💖 \nAaj jab hamari saath ki is ek saal ki journey ko yaad karta hoon... (Yahan aapka pura message load hoga)... I love you endlessly!`;
+let music = document.getElementById("bgMusic");
 
-let score = 0;
-const music = document.getElementById('bgMusic');
-
-function show(id) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function startSite(){
+  music.play().catch(()=>{});
+  showSection('game');
 }
 
-function startApp() {
-  music.play().catch(() => console.log("Music needs interaction"));
-  show('s2');
-  spawnHeart();
+function showSection(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-function spawnHeart() {
-  if(score >= 5) {
-    show('s3');
-    return;
+/* Pause music when videos play */
+document.querySelectorAll("video").forEach(v=>{
+  v.addEventListener("play",()=>music.pause());
+  v.addEventListener("pause",()=>music.play());
+  v.addEventListener("ended",()=>music.play());
+});
+
+/* SIMPLE MOBILE GAME */
+const canvas=document.getElementById("gameCanvas");
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+  canvas.width=canvas.offsetWidth;
+  canvas.height=300;
+}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+let player={x:20,y:150,size:20};
+let heart={x:250,y:150,size:15};
+
+document.addEventListener("touchmove",e=>{
+  player.x=e.touches[0].clientX-20;
+  player.y=e.touches[0].clientY-100;
+});
+
+function loop(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="red";
+  ctx.fillRect(player.x,player.y,player.size,player.size);
+
+  ctx.fillStyle="pink";
+  ctx.beginPath();
+  ctx.arc(heart.x,heart.y,heart.size,0,Math.PI*2);
+  ctx.fill();
+
+  if(Math.abs(player.x-heart.x)<20 && Math.abs(player.y-heart.y)<20){
+    document.getElementById("winMessage").style.display="block";
   }
-  const zone = document.getElementById('game-zone');
-  const h = document.createElement('div');
-  h.className = 'heart-target';
-  h.innerHTML = '❤️';
-  h.style.left = Math.random() * 250 + 'px';
-  h.style.top = Math.random() * 250 + 'px';
-  h.onclick = () => {
-    score++;
-    document.getElementById('scoreText').innerText = `Found: ${score}/5`;
-    zone.removeChild(h);
-    spawnHeart();
-  };
-  zone.appendChild(h);
-}
 
-function goLetter() {
-  show('s4');
-  const box = document.getElementById('typingBox');
-  let i = 0;
-  // Speed calculation for 2 seconds
-  const speed = 2000 / msg.length;
-  const interval = setInterval(() => {
-    box.innerHTML += msg.charAt(i);
-    i++;
-    box.scrollTop = box.scrollHeight;
-    if(i >= msg.length) clearInterval(interval);
-  }, speed);
+  requestAnimationFrame(loop);
 }
+loop();
 </script>
+
 </body>
 </html>
