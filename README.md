@@ -9,7 +9,7 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:'Poppins',sans-serif;
+  font-family: 'Poppins', sans-serif;
   background:linear-gradient(135deg,#ffd6e8,#ffeef5);
   display:flex;
   justify-content:center;
@@ -17,24 +17,24 @@ body{
 }
 
 .card{
-  width:90%;
-  max-width:380px;
+  width:92%;
+  max-width:390px;
   background:#fff;
   border-radius:22px;
-  padding:20px;
+  padding:18px;
   text-align:center;
   box-shadow:0 15px 40px rgba(0,0,0,0.15);
 }
 
-.hidden{display:none;}
+.hidden{display:none}
 
-h2,h3{color:#d6336c;}
-p{font-size:14px;color:#555;}
+h2,h3{color:#d6336c}
+p{font-size:14px;color:#555}
 
 /* GIF BOX */
 .gif-box{
-  width:120px;
-  height:120px;
+  width:110px;
+  height:110px;
   margin:0 auto 12px;
   border-radius:16px;
   overflow:hidden;
@@ -43,6 +43,7 @@ p{font-size:14px;color:#555;}
   width:100%;
   height:100%;
   object-fit:cover;
+  display:block;
 }
 
 /* BUTTON */
@@ -62,14 +63,21 @@ button{
   display:flex;
   justify-content:center;
   gap:22px;
-  font-size:40px;
+  font-size:42px;
   cursor:pointer;
 }
+.rose{
+  transition:transform 0.2s;
+}
+.rose:active{
+  transform:scale(1.3);
+}
 #roseMessage{
-  margin-top:12px;
-  min-height:50px;
+  margin-top:14px;
+  min-height:44px;
   font-size:15px;
   color:#b0004e;
+  font-weight:500;
 }
 
 /* PHOTOS */
@@ -78,22 +86,30 @@ button{
   grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
-.photo-grid img{
+.photo{
   width:100%;
+  aspect-ratio:1/1;
   border-radius:12px;
+  overflow:hidden;
+}
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 /* VIDEOS */
 video{
   width:100%;
   border-radius:14px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 /* LETTER */
 .letter{
   background:#fff7fb;
-  padding:15px;
+  padding:14px;
   border-radius:15px;
   text-align:left;
   font-size:13px;
@@ -124,14 +140,13 @@ video{
   <div class="gif-box">
     <img src="http://tmpfiles.org/dl/22876666/fromklickpincfpinvonelizavetapauesovaaufenrgy_gifbilderlustigniedlicheliebeszeichentrickliebegifthealeni.gif">
   </div>
-
   <h3>Pick a Rose 🌹</h3>
-  <p>Tap any rose</p>
+  <p>Tap any rose below</p>
 
   <div class="roses">
-    <span onclick="pickRose()">🌹</span>
-    <span onclick="pickRose()">🌹</span>
-    <span onclick="pickRose()">🌹</span>
+    <div class="rose" onclick="pickRose()">🌹</div>
+    <div class="rose" onclick="pickRose()">🌹</div>
+    <div class="rose" onclick="pickRose()">🌹</div>
   </div>
 
   <div id="roseMessage"></div>
@@ -142,28 +157,32 @@ video{
 <!-- PHOTOS -->
 <div id="photos" class="hidden">
   <h3>Our Memories 🎀🧿</h3>
+
   <div class="photo-grid">
-    <img src="https://i.postimg.cc/yNqkyd81/IMG_20260206_190532.png">
-    <img src="https://i.postimg.cc/s2Fv4Xg3/IMG_20260206_190558.png">
-    <img src="https://i.postimg.cc/K831TLx4/IMG_20260206_190630.png">
-    <img src="https://i.postimg.cc/rp6KNmw8/IMG_20260206_190726.png">
-    <img src="https://i.postimg.cc/XNxB64s3/IMG_20260206_190744.png">
-    <img src="https://i.postimg.cc/MGkvmTpR/IMG_20260206_190444.png">
-    <img src="https://i.postimg.cc/k5rBv4gN/IMG_20260206_190512.png">
-    <img src="https://i.postimg.cc/xdrc3C16/IMG_20260206_190418.png">
+    <div class="photo"><img src="https://i.postimg.cc/yNqkyd81/IMG_20260206_190532.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/s2Fv4Xg3/IMG_20260206_190558.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/K831TLx4/IMG_20260206_190630.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/rp6KNmw8/IMG_20260206_190726.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/XNxB64s3/IMG_20260206_190744.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/MGkvmTpR/IMG_20260206_190444.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/k5rBv4gN/IMG_20260206_190512.png"></div>
+    <div class="photo"><img src="https://i.postimg.cc/xdrc3C16/IMG_20260206_190418.png"></div>
   </div>
+
   <button onclick="openPage('videos')">For You 🫶🏻💗</button>
 </div>
 
 <!-- VIDEOS -->
 <div id="videos" class="hidden">
   <h3>For You 🫶🏻💗</h3>
-  <video controls src="https://files.catbox.moe/mw3f2q.mp4"></video>
-  <video controls src="https://files.catbox.moe/ggbrik.mp4"></video>
-  <video controls src="https://files.catbox.moe/sfk5b8.mp4"></video>
-  <video controls src="https://files.catbox.moe/p150ss.mp4"></video>
-  <video controls src="https://files.catbox.moe/3ju0zb.mp4"></video>
-  <video controls src="https://files.catbox.moe/6kf2dd.mp4"></video>
+
+  <video controls playsinline src="https://files.catbox.moe/mw3f2q.mp4"></video>
+  <video controls playsinline src="https://files.catbox.moe/ggbrik.mp4"></video>
+  <video controls playsinline src="https://files.catbox.moe/sfk5b8.mp4"></video>
+  <video controls playsinline src="https://files.catbox.moe/p150ss.mp4"></video>
+  <video controls playsinline src="https://files.catbox.moe/3ju0zb.mp4"></video>
+  <video controls playsinline src="https://files.catbox.moe/6kf2dd.mp4"></video>
+
   <button onclick="openPage('letter')">From My Heart 🤍</button>
 </div>
 
@@ -172,10 +191,10 @@ video{
   <div class="gif-box">
     <img src="http://tmpfiles.org/dl/22876413/fromklickpincfbunnysticker-bunny-discoversharegifs_cutelovegifcutegifloveyougif.gif">
   </div>
-
   <h3>From My Heart 🤍</h3>
 
   <div class="letter">
+<!-- (letter text exactly same as before, unchanged) -->
 Happy Rose Day, meri zindagi ke sabse khoobsurat ehsaas 🌹
 Aaj Rose Day hai, aur jab bhi rose ka naam aata hai na, mujhe aap yaad aa jaate ho. Kyunki jaise ek rose simple hoke bhi special hota hai, waise hi aap meri life me aaye bina koi shor machaye… par dheere dheere sabse important ban gaye. Aapke saath hone ka ehsaas hi alag hai — bina zyada bole, bina zyada dikhaye, bas ek sukoon sa. Jaise kisi thake hue din ke baad achanak thandi hawa mil jaaye.
 Mujhe aapki woh chhoti chhoti baatein bohot pasand hain, jinhe shayad duniya notice bhi na kare, par mere liye wahi sabse important hoti hain. Aapka mood, aapki khamoshi, aapki hasi, aur kabhi kabhi aapka bina wajah gussa hona — sab kuch. Aap perfect isliye nahi ho kyunki aap kabhi galat nahi hote, balki isliye ho kyunki aap real ho. Aur mujhe real cheezein hi sabse zyada apni lagti hain.
